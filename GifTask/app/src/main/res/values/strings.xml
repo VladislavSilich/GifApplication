@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GifTask</string>
+    <string name="error_message_loading_users">There seems to have been some error.</string>
 </resources>

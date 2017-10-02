@@ -13,16 +13,16 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Lenovo on 02.10.2017.
  */
 
-public class AppControler extends Application {
+public class AppController extends Application {
     private GifService gifService;
     private Scheduler scheduler;
 
-    private static AppControler get (Context context){
-        return (AppControler)context.getApplicationContext();
+    private static AppController get (Context context){
+        return (AppController)context.getApplicationContext();
     }
 
-    public static AppControler create(Context context){
-        return AppControler.get(context);
+    public static AppController create(Context context){
+        return AppController.get(context);
     }
 
     public GifService getGifService(){
