@@ -46,7 +46,7 @@ public class GifViewModel extends Observable {
 
      public void onClickFabToLoad(View view){
          initializeViews();
-         fetchUsersList();
+         fetchGifList();
      }
 
 
@@ -55,7 +55,7 @@ public class GifViewModel extends Observable {
         userRecycler.set(View.GONE);
         progressBar.set(View.VISIBLE);
     }
-    private void fetchUsersList() {
+    private void fetchGifList() {
         AppController appController = AppController.create(context);
         GifService gifService = appController.getGifService();
 
