@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.gif.example.silich.vladislav.giftask.R;
 import com.gif.example.silich.vladislav.giftask.app.AppController;
+import com.gif.example.silich.vladislav.giftask.model.Datum;
 import com.gif.example.silich.vladislav.giftask.model.GifResponse;
 import com.gif.example.silich.vladislav.giftask.network.GifService;
 import com.gif.example.silich.vladislav.giftask.utils.Constant;
@@ -27,11 +28,11 @@ import io.reactivex.functions.Consumer;
 
 public class GifViewModel extends Observable {
      public ObservableInt progressBar;
-     public ObservableInt userRecycler;
+    public ObservableInt userRecycler;
      public ObservableInt userLabel;
      public ObservableField<String> messageLabel;
 
-     private List<GifResponse> gifList;
+     private List<String> gifList;
      private Context context;
      private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -39,17 +40,14 @@ public class GifViewModel extends Observable {
           this.context = context;
           this.gifList = new ArrayList<>();
           progressBar = new ObservableInt(View.GONE);
-          userRecycler = new ObservableInt(View.GONE);
+         userRecycler = new ObservableInt(View.GONE);
           userLabel = new ObservableInt(View.VISIBLE);
           messageLabel = new ObservableField<>("Press to button to load people");
      }
-
      public void onClickFabToLoad(View view){
          initializeViews();
          fetchGifList();
      }
-
-
     public void initializeViews() {
         userLabel.set(View.GONE);
         userRecycler.set(View.GONE);
@@ -65,7 +63,7 @@ public class GifViewModel extends Observable {
                 .subscribe(new Consumer<GifResponse>() {
                     @Override
                     public void accept(GifResponse gifResponse) throws Exception {
-                        gifResponse.getMeta().getStatus();
+                        updateUserDataList(gifResponse.getData());
                         progressBar.set(View.GONE);
                         userLabel.set(View.GONE);
                         userRecycler.set(View.VISIBLE);
@@ -81,13 +79,36 @@ public class GifViewModel extends Observable {
         compositeDisposable.add(disposable);
     }
 
-    private void updateUserDataList(List<GifResponse> gifs) {
-        gifList.addAll(gifs);
+    private void updateUserDataList(List<Datum> gifs) {
+
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Q");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Q");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Q");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
         setChanged();
         notifyObservers();
     }
 
-    public List<GifResponse> getUserList() {
+    public List<String> getGifList() {
         return gifList;
     }
 

@@ -23,9 +23,6 @@
           app:layout_behavior="@string/appbar_scrolling_view_behavior"
           android:fitsSystemWindows="true">
 
-
-
-
          <LinearLayout
              android:layout_width="match_parent"
              android:layout_height="match_parent"
@@ -49,7 +46,7 @@
                 app:visibility="@{model.userLabel}"/>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/list_user"
+                android:id="@+id/list_gif"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
