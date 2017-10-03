@@ -54,7 +54,7 @@
                 android:background="@color/colorWhiteMy"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:visibility="@{model.userRecycler}"
-                tools:listitem="@layout/recycler_view_item"
+                tools:listitem="@layout/item_gif"
                 />
 
 

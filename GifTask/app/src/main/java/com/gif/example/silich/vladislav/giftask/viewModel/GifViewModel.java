@@ -80,30 +80,10 @@ public class GifViewModel extends Observable {
     }
 
     private void updateUserDataList(List<Datum> gifs) {
+        for (int i = 0; i < gifs.size();i++){
+            gifList.add(gifs.get(i).getImages().getDownsized().getUrl());
 
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Q");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Q");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Q");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
-        gifList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn_iaUw980husYYpPc2IchvF_Ypb96OKjqe4dwLxHeb9hgztTV2Qd");
+        }
         setChanged();
         notifyObservers();
     }

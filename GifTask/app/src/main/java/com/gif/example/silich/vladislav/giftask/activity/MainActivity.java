@@ -15,41 +15,39 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class MainActivity extends AppCompatActivity implements Observer{
-    ActivityMainBinding mainActivityBinding;
+    private  ActivityMainBinding mainActivityBinding;
     private GifViewModel gifViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        initDataBinding();
         setSupportActionBar(mainActivityBinding.toolbar);
-        setUpListOfUsersView(mainActivityBinding.listGif);
+        setUpListOfGifView(mainActivityBinding.listGif);
         setUpObserver(gifViewModel);
     }
-
-    private void setUpListOfUsersView(RecyclerView listGif) {
+    private void setUpListOfGifView(RecyclerView listGif) {
         GifAdapter gifAdapter = new GifAdapter();
-        listGif.setLayoutManager(new LinearLayoutManager(this));
         listGif.setAdapter(gifAdapter);
+        listGif.setLayoutManager(new LinearLayoutManager(this));
     }
-
     private void initDataBinding() {
         mainActivityBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         gifViewModel = new GifViewModel(this);
         mainActivityBinding.setModel(gifViewModel);
     }
-
-    @Override
-    public void update(Observable o, Object arg) {
-        if (o instanceof GifViewModel) {
-            GifAdapter gifAdapter = (GifAdapter) mainActivityBinding.listGif.getAdapter();
-            GifViewModel gifViewModel = (GifViewModel) o;
-            gifAdapter.setUrlList(gifViewModel.getGifList());
-        }
-    }
     public void setUpObserver(Observable observable) {
         observable.addObserver(this);
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        if(o instanceof  GifViewModel) {
+            GifAdapter gifAdapter = (GifAdapter) mainActivityBinding.listGif.getAdapter();
+            GifViewModel gifViewModel = (GifViewModel) o;
+            gifAdapter.setGifList(gifViewModel.getGifList());
+        }
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
