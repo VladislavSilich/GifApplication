@@ -31,6 +31,8 @@ public class GifViewModel extends Observable {
     public ObservableInt userRecycler;
      public ObservableInt userLabel;
      public ObservableField<String> messageLabel;
+    public ObservableInt edtSearch;
+    public ObservableInt btnSearch;
 
      private List<String> gifList;
      private Context context;
@@ -39,10 +41,12 @@ public class GifViewModel extends Observable {
      public GifViewModel(@NonNull Context context){
           this.context = context;
           this.gifList = new ArrayList<>();
+         btnSearch = new ObservableInt(View.GONE);
+         edtSearch = new ObservableInt(View.GONE);
           progressBar = new ObservableInt(View.GONE);
          userRecycler = new ObservableInt(View.GONE);
           userLabel = new ObservableInt(View.VISIBLE);
-          messageLabel = new ObservableField<>("Press to button to load people");
+          messageLabel = new ObservableField<>("Press to button to load gif");
      }
      public void onClickFabToLoad(View view){
          initializeViews();
@@ -81,7 +85,7 @@ public class GifViewModel extends Observable {
 
     private void updateUserDataList(List<Datum> gifs) {
         for (int i = 0; i < gifs.size();i++){
-            gifList.add(gifs.get(i).getImages().getDownsized().getUrl());
+            gifList.add(gifs.get(i).getImages().getFixedHeight().getUrl());
 
         }
         setChanged();
@@ -96,6 +100,11 @@ public class GifViewModel extends Observable {
         if (compositeDisposable != null && !compositeDisposable.isDisposed()) {
             compositeDisposable.dispose();
         }
+    }
+
+    public void showEditBtnSearch(){
+        edtSearch.set(View.VISIBLE);
+        btnSearch.set(View.VISIBLE);
     }
 
     public void reset() {
