@@ -76,6 +76,7 @@ public class GifViewModel extends Observable {
                     @Override
                     public void accept(GifResponse gifResponse) throws Exception {
                         gifList.clear();
+                        userLabel.set(View.GONE);
                         updateUserDataList(gifResponse.getData());
                         progressBar.set(View.GONE);
                         imgGiphy.set(View.GONE);
