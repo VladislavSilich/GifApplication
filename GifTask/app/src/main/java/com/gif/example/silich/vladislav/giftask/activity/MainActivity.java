@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.gif.example.silich.vladislav.giftask.R;
 import com.gif.example.silich.vladislav.giftask.adapter.GifAdapter;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements Observer{
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_github) {
             item.setVisible(false);
+            gifViewModel.userLabel.set(View.GONE);
             gifViewModel.showEditBtnSearch();
             return true;
         }

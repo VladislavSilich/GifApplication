@@ -75,7 +75,8 @@ public class GifViewModel extends Observable {
                         gifList.clear();
                         updateUserDataList(gifResponse.getData());
                         progressBar.set(View.GONE);
-                    }
+                        userLabel.set(View.GONE);
+                        userRecycler.set(View.VISIBLE);                    }
                 },new Consumer<Throwable>() {
                     @Override public void accept(Throwable throwable) throws Exception {
                         messageLabel.set(context.getString(R.string.error_message_loading_users));
