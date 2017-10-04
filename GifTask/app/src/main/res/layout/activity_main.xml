@@ -63,13 +63,23 @@
                 android:layout_height="wrap_content"
                 app:visibility="@{model.progressBar}"/>
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/image_people"
+                android:layout_width="201dp"
+                android:layout_height="201dp"
+                android:visibility="@{model.imgGiphy}"
+                android:layout_gravity="center"
+                android:src="@drawable/giphy"/>
+
             <TextView
                 android:id="@+id/label_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="25sp"
                 android:gravity="center"
                 android:text="@{model.messageLabel}"
                 app:visibility="@{model.userLabel}"/>
+
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_gif"
