@@ -34,6 +34,7 @@ public class GifViewModel extends Observable {
      public ObservableField<String> messageLabel;
     public ObservableInt edtSearch;
     public ObservableInt btnSearch;
+    public ObservableInt imgGiphy;
     public ObservableField<String> edtTextSearch;
      private List<String> gifList;
      private Context context;
@@ -43,14 +44,16 @@ public class GifViewModel extends Observable {
           this.context = context;
           this.gifList = new ArrayList<>();
          btnSearch = new ObservableInt(View.GONE);
+         imgGiphy = new ObservableInt(View.VISIBLE);
          edtSearch = new ObservableInt(View.GONE);
           progressBar = new ObservableInt(View.GONE);
          userRecycler = new ObservableInt(View.GONE);
           userLabel = new ObservableInt(View.VISIBLE);
          edtTextSearch = new ObservableField<>();
-          messageLabel = new ObservableField<>("Press to button to load gif");
+          messageLabel = new ObservableField<>();
      }
      public void onClickFabToLoad(View view){
+         imgGiphy.set(View.GONE);
          initializeViews();
          gifList.clear();
          fetchGifList();
@@ -75,6 +78,7 @@ public class GifViewModel extends Observable {
                         gifList.clear();
                         updateUserDataList(gifResponse.getData());
                         progressBar.set(View.GONE);
+                        imgGiphy.set(View.GONE);
                     }
                 },new Consumer<Throwable>() {
                     @Override public void accept(Throwable throwable) throws Exception {
@@ -103,6 +107,7 @@ public class GifViewModel extends Observable {
                     public void accept(GifResponse gifResponse) throws Exception {
                         updateUserDataList(gifResponse.getData());
                         progressBar.set(View.GONE);
+                        imgGiphy.set(View.GONE);
                         userLabel.set(View.GONE);
                         userRecycler.set(View.VISIBLE);
                     }
