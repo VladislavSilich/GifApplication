@@ -27,6 +27,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:gravity="center"
+             android:background="@color/colorGrey"
              android:orientation="vertical"
              app:layout_behavior="@string/appbar_scrolling_view_behavior">
             <LinearLayout
@@ -34,10 +35,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <EditText
+                    android:id="@+id/edtTextSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/search"
+                    android:focusable="true"
                     app:visibility= "@{model.edtSearch}"
+                     android:text="@={model.edtTextSearch}"
                     android:layout_weight="1"/>
                 <Button
                     android:layout_width="match_parent"
@@ -45,7 +49,8 @@
                     android:layout_weight="4"
                     app:visibility= "@{model.btnSearch}"
                     android:layout_marginTop="10dp"
-                    android:clickable=""
+                    android:clickable="true"
+                    android:onClick="@{model::onClickSearchToLoad}"
                     android:background="@drawable/search_btn"/>
             </LinearLayout>
 
@@ -69,7 +74,7 @@
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:scrollbars="vertical"
-                android:background="@color/colorWhiteMy"
+                android:background="@color/colorGrey"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:visibility="@{model.userRecycler}"
                 tools:listitem="@layout/item_gif"
@@ -105,8 +110,6 @@
          </android.support.design.widget.AppBarLayout>
 
       </android.support.design.widget.CoordinatorLayout>
-
-
 
    </android.support.v4.widget.DrawerLayout>
 

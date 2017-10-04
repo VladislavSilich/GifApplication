@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.gif.example.silich.vladislav.giftask.R;
@@ -33,7 +34,7 @@ public class GifViewModel extends Observable {
      public ObservableField<String> messageLabel;
     public ObservableInt edtSearch;
     public ObservableInt btnSearch;
-
+    public ObservableField<String> edtTextSearch;
      private List<String> gifList;
      private Context context;
      private CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -46,12 +47,46 @@ public class GifViewModel extends Observable {
           progressBar = new ObservableInt(View.GONE);
          userRecycler = new ObservableInt(View.GONE);
           userLabel = new ObservableInt(View.VISIBLE);
+         edtTextSearch = new ObservableField<>();
           messageLabel = new ObservableField<>("Press to button to load gif");
      }
      public void onClickFabToLoad(View view){
          initializeViews();
+         gifList.clear();
          fetchGifList();
      }
+
+     public void  onClickSearchToLoad(View view){
+         progressBar.set(View.VISIBLE);
+         String text = edtTextSearch.get();
+         String result = TextUtils.join("+",text.trim().split(" "));
+         searchGifList(result);
+     }
+
+    private void searchGifList(String text) {
+        AppController appControler = AppController.create(context);
+        GifService gifService = appControler.getGifService();
+        Disposable disposable = gifService.searchGif(text,Constant.API_KEY)
+                .subscribeOn(appControler.subscribeScheduler())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<GifResponse>() {
+                    @Override
+                    public void accept(GifResponse gifResponse) throws Exception {
+                        gifList.clear();
+                        updateUserDataList(gifResponse.getData());
+                        progressBar.set(View.GONE);
+                    }
+                },new Consumer<Throwable>() {
+                    @Override public void accept(Throwable throwable) throws Exception {
+                        messageLabel.set(context.getString(R.string.error_message_loading_users));
+                        progressBar.set(View.GONE);
+                        userLabel.set(View.VISIBLE);
+                        userRecycler.set(View.GONE);
+                    }
+                });
+        compositeDisposable.add(disposable);
+    }
+
     public void initializeViews() {
         userLabel.set(View.GONE);
         userRecycler.set(View.GONE);
@@ -60,7 +95,6 @@ public class GifViewModel extends Observable {
     private void fetchGifList() {
         AppController appController = AppController.create(context);
         GifService gifService = appController.getGifService();
-
         Disposable disposable = gifService.fetchGif(Constant.API_KEY)
                 .subscribeOn(appController.subscribeScheduler())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -84,9 +118,15 @@ public class GifViewModel extends Observable {
     }
 
     private void updateUserDataList(List<Datum> gifs) {
-        for (int i = 0; i < gifs.size();i++){
-            gifList.add(gifs.get(i).getImages().getFixedHeight().getUrl());
-
+        if(gifs.size() != 0) {
+            for (int i = 0; i < gifs.size(); i++) {
+                if (gifs.get(i).getImages().getFixedHeight().getUrl() != null) {
+                    gifList.add(gifs.get(i).getImages().getFixedHeight().getUrl());
+                }
+            }
+        } else {
+            messageLabel.set("Nothing to show");
+            userLabel.set(View.VISIBLE);
         }
         setChanged();
         notifyObservers();

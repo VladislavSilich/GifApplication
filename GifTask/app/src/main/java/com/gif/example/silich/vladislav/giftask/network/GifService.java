@@ -13,4 +13,7 @@ import retrofit2.http.Query;
 public interface GifService {
     @GET("trending")
     Observable<GifResponse> fetchGif(@Query("api_key")String key);
+
+    @GET("search")
+    Observable<GifResponse> searchGif(@Query("q") String q, @Query("api_key") String key);
 }
