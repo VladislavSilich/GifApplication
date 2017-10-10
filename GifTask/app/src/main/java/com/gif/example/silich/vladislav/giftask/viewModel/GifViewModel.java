@@ -66,7 +66,7 @@ public class GifViewModel extends Observable {
          searchGifList(result);
      }
 
-    private void searchGifList(String text) {
+    public void searchGifList(String text) {
         AppController appControler = AppController.create(context);
         GifService gifService = appControler.getGifService();
         Disposable disposable = gifService.searchGif(text,Constant.API_KEY)
