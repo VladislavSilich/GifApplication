@@ -28,6 +28,9 @@ public class GifViewModelTest {
         assertNotNull(gifViewModel);
     }
 
-
+    @Test
+    public void testNoActionsWithView() throws Exception{
+        Mockito.verifyNoMoreInteractions(mainActivity);
+    }
 
 }
