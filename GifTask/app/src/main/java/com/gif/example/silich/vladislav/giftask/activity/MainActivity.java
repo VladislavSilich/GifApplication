@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements Observer{
     public void setUpObserver(Observable observable) {
         observable.addObserver(this);
     }
-
     @Override
     public void update(Observable o, Object arg) {
         if(o instanceof  GifViewModel) {
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements Observer{
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
-
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_github) {
             if(gifViewModel.getGifList().size() != 0) {
