@@ -45,16 +45,8 @@
                     android:focusable="true"
                     app:visibility= "@{model.edtSearch}"
                      android:text="@={model.edtTextSearch}"
-                    android:layout_weight="1"/>
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    app:visibility= "@{model.btnSearch}"
-                    android:layout_marginTop="10dp"
-                    android:clickable="true"
-                    android:onClick="@{model::onClickSearchToLoad}"
-                    android:background="@drawable/search_btn"/>
+                    app:addTextChangedListener="@{model.nameWatcher}" />
+
             </LinearLayout>
 
             <ProgressBar
