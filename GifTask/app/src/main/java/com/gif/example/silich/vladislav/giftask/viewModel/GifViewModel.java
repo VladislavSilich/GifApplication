@@ -4,7 +4,9 @@ import android.content.Context;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.support.annotation.NonNull;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 
 import com.gif.example.silich.vladislav.giftask.R;
@@ -33,7 +35,6 @@ public class GifViewModel extends Observable {
      public ObservableInt userLabel;
      public ObservableField<String> messageLabel;
     public ObservableInt edtSearch;
-    public ObservableInt btnSearch;
     public ObservableInt imgGiphy;
     public ObservableField<String> edtTextSearch;
      private List<String> gifList;
@@ -43,7 +44,6 @@ public class GifViewModel extends Observable {
      public GifViewModel(@NonNull Context context){
           this.context = context;
           this.gifList = new ArrayList<>();
-         btnSearch = new ObservableInt(View.GONE);
          imgGiphy = new ObservableInt(View.VISIBLE);
          edtSearch = new ObservableInt(View.GONE);
           progressBar = new ObservableInt(View.GONE);
@@ -150,12 +150,29 @@ public class GifViewModel extends Observable {
 
     public void showEditBtnSearch(){
         edtSearch.set(View.VISIBLE);
-        btnSearch.set(View.VISIBLE);
     }
 
     public void reset() {
         unSubscribeFromObservable();
         compositeDisposable = null;
         context = null;
+    }
+    public TextWatcher nameWatcher(){
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchGifList(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
     }
 }
